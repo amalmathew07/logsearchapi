@@ -14,6 +14,9 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - I7wsDgnYcRTJ/z4V3XF0w4W/nSyMyfIunfCqxp9cwz4
       - run:
           name: Deploy to Production
           command: |
