@@ -1,0 +1,25 @@
+service: log-search-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  timeout: 30
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: "20201221"
+
+functions:
+  logsHandler:
+    handler: handler.handler
+    events:
+      - http:
+          path: /logs
+          method: get
+
+  pdfGenerator:
+    handler: handler.handler # Adjust the path accordingly
+    events:
+      - http:
+          path: /generate-pdf
+          method: post # Adjust the HTTP method if needed

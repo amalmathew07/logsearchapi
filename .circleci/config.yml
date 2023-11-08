@@ -1,0 +1,38 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+
+  deploy:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Production
+          command: |
+            # Install Serverless framework
+            npm install -g serverless
+            # Deploy using Serverless
+            serverless deploy
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
