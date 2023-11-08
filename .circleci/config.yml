@@ -16,7 +16,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - I7wsDgnYcRTJ/z4V3XF0w4W/nSyMyfIunfCqxp9cwz4
+            - AL0NYItzw26+78Ts25b5TtMxcuKiQd6SiUewDCjS5NE
       - run:
           name: Deploy to Production
           command: |
