@@ -14,9 +14,15 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - run:
+          name: Start SSH agent
+          command: eval $(ssh-agent)
       - add_ssh_keys:
           fingerprints:
-            - AL0NYItzw26+78Ts25b5TtMxcuKiQd6SiUewDCjS5NE
+            - "AL0NYItzw26+78Ts25b5TtMxcuKiQd6SiUewDCjS5NE"
+      - run:
+          name: Add SSH key to agent
+          command: ssh-add ~/.ssh/id_rsa
       - run:
           name: Deploy to Production
           command: |
